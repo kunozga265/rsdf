@@ -111,7 +111,7 @@ class PageController extends Controller
             'message'          =>  ['required'],
         ])->validate();
 
-        Mail::to('kunozgamlowoka@gmail.com')->send(new ContactUSMail($request->name,$request->message,$request->email));
+        Mail::to('contact@rosdfoundation.org')->send(new ContactUSMail($request->name,$request->message,$request->email));
 
         return Redirect::back()->with('success','Message sent!');
 
