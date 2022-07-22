@@ -22,7 +22,7 @@
 
 
 
-<!doctype html>
+    <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
@@ -42,7 +42,7 @@
     <!-- Scripts -->
 {{--    @vite(['resources/css/app.css', 'resources/js/app.js'])--}}
 
-    <!-- Font Awesome Icons CSS -->
+<!-- Font Awesome Icons CSS -->
     <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
     <!-- Themify Icons CSS -->
     <link rel="stylesheet" href="{{asset('css/themify-icons.css')}}">
@@ -124,26 +124,26 @@
                             <ul>
                                 <li><a href="{{route('contact-info')}}">Contact Info</a></li>
                                 <li><a href="{{route('ngo-management')}}">NGO Management</a></li>
-{{--                                <li><a href="#">Core Values</a></li>--}}
+                                {{--                                <li><a href="#">Core Values</a></li>--}}
                                 <li><a href="{{route('rsdf-region-office')}}">RSDF Region Office</a></li>
                                 <li><a href="{{route('objectives')}}">Objectives</a></li>
                                 <li><a href="{{route('funding-guarantee')}}">Funding Guarantee</a></li>
                             </ul>
                         </li>
                         @auth
-                        <li> <a href="#">Profile</a>
+                            <li> <a href="#">Profile</a>
 
-                            <ul>
-                                <li><a href="#" data-toggle="modal" data-target="#exampleModalCenter">Change Password</a></li>
-                                <li>
-                                    <form id="logout" method="post" action="{{route('logout')}}" >
-                                        @csrf
-                                        <a href="javascript:{}" onclick="document.getElementById('logout').submit();">Logout</a>
-                                    </form>
-                                </li>
+                                <ul>
+                                    <li><a href="#" data-toggle="modal" data-target="#changePassword">Change Password</a></li>
+                                    <li>
+                                        <form id="logout" method="post" action="{{route('logout')}}" >
+                                            @csrf
+                                            <a href="javascript:{}" onclick="document.getElementById('logout').submit();">Logout</a>
+                                        </form>
+                                    </li>
 
-                            </ul>
-                        </li>
+                                </ul>
+                            </li>
                         @endauth
                     </ul>
                     <a data-scroll href="#subscribe" class="default-btn">Subscribe</a>
@@ -154,7 +154,7 @@
 </header><!-- /Header Section -->
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="changePassword" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <form id="" class="form-wrap material" method="post" action="{{route('change-password')}}" enctype="multipart/form-data">
@@ -214,9 +214,9 @@
 
 <section class="widget-section padding">
     <div class="container">
-{{--        <div class="row">--}}
-{{--           --}}
-{{--        </div>--}}
+        {{--        <div class="row">--}}
+        {{--           --}}
+        {{--        </div>--}}
         <div class="widget-wrap row">
             <div id="subscribe" class="col-md-12 col-lg-4 xs-padding">
                 <div class="widget-content">
@@ -234,7 +234,7 @@
                     <ul class="address">
                         <li><i class="ti-email"></i> contact@rosdfoundation.org</li>
                         <li><i class="ti-mobile"></i> +244930731304</li>
-{{--                        <li><i class="ti-world"></i> Www.YourWebsite.com</li>--}}
+                        {{--                        <li><i class="ti-world"></i> Www.YourWebsite.com</li>--}}
                         <li><i class="ti-location-pin"></i> Lusaka, Zambia</li>
                     </ul>
                     <ul class="social-icon">
@@ -280,12 +280,12 @@
             <div class="col-md-6 sm-padding">
                 <div class="copyright">&copy; 2022 Roberto Save Dreams Foundation</div>
             </div>
-        {{--    <div class="col-md-6 sm-padding">
-                <ul class="footer-social">
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                </ul>
-            </div>--}}
+            {{--    <div class="col-md-6 sm-padding">
+                    <ul class="footer-social">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    </ul>
+                </div>--}}
         </div>
     </div>
 </footer><!-- /Footer Section -->
