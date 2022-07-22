@@ -1,6 +1,6 @@
 <x-guest-layout>
 
-    <div class="rsdf-header" style="background-image: url({{asset('img/slider-1.jpg')}})">
+    <div class="rsdf-header" style="background-image: url({{asset($page->photo)}})">
         <div>
 {{--            <h5 class="wow cssanimation fadeInBottom">Join Us Today</h5>--}}
             <h1 class="wow cssanimation fadeInTop" data-wow-delay="1s" data-wow-duration="800ms">Roberto Save <br> Dreams Foundation</h1>
@@ -8,6 +8,38 @@
                 driven development initiatives and enable needy community groups participate in integrated activities to
                 achieve quality livelihood and be self-sustainable. RSDF operates in Zambia, Angola and other surrounding regions. To learn the latest developments about our NGO, subscribe to our newsletter</p>
             <a data-scroll href="#subscribe" class="default-btn wow cssanimation fadeInBottom" data-wow-delay="0.8s">Subscribe</a>
+        </div>
+        @auth
+        <!-- Button trigger modal -->
+        <button type="button" class="error-btn edit-photo" data-toggle="modal" data-target="#exampleModalCenter">
+            <i class="ti-pencil"></i> Photo
+        </button>
+        @endauth
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <form id="" class="form-wrap material" method="post" action="{{route('pages.upload-photo')}}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Edit Photo</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" name="code" value="{{$page->code}}">
+                        <input type="file" name="photo" id="photo" class="form-control-file material__input pt-8" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="secondary-btn" data-dismiss="modal">Close</button>
+                        <button type="submit" class="default-btn">Upload</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -120,25 +152,25 @@
                 <div class="col-sm-6 xs-padding">
                    <div class="profile-wrap">
                        <h3>Our Activities</h3>
-                       <a href="#" class="secondary-btn">Read More</a>
+                       <a href="{{route('our-activities')}}" class="secondary-btn">Read More</a>
                     </div>
                 </div>
                 <div class=" col-sm-6 xs-padding">
                     <div class="profile-wrap">
                         <h3>Our Achievements</h3>
-                        <a href="#" class="secondary-btn">Read More</a>
+                        <a href="{{route('our-achievements')}}" class="secondary-btn">Read More</a>
                     </div>
                 </div>
                 <div class="col-sm-6 xs-padding">
                     <div class="profile-wrap">
                         <h3>Partnerships</h3>
-                        <a href="#" class="secondary-btn">Read More</a>
+                        <a href="{{route('partnerships')}}" class="secondary-btn">Read More</a>
                     </div>
                 </div>
                 <div class="col-sm-6 xs-padding">
                     <div class="profile-wrap">
                         <h3>Future Plans</h3>
-                        <a href="#" class="secondary-btn">Read More</a>
+                        <a href="{{route('future-plans')}}" class="secondary-btn">Read More</a>
                     </div>
                 </div>
             </div>
@@ -155,44 +187,20 @@
             <div class="row">
                 <div class="col-lg-12 xs-padding">
                     <div class="blog-items grid-list row">
-                        <div class="col-md-4 padding-15">
-                            <div class="blog-post">
-                                <div class="image-placeholder" style="background-image: url({{asset('images/logo.jpeg')}}); height: 230px"></div>
-                                <div class="blog-content">
-                                    <span class="date"><i class="fa fa-clock-o"></i> July 22.2022</span>
-                                    <h3><a href="#">Formation of the NGO</a></h3>
-                                    <p>We engage young people in a constructive
-                                        manner enabling their initiatives and build
-                                        their ideas, develop prototype, test and develop products that meet the people’s needs
-                                        and help reduce the problems and challenges that are faced by most in development
-                                        sector.</p>
-                                    <a href="{{route('news.formation-of-ngo')}}" class="post-meta">Read More</a>
+                        @foreach($news as $article)
+                            <div class="col-md-4 padding-15">
+                                <div class="blog-post">
+                                    <div class="image-placeholder" style="background-image: url({{asset($article->photo)}}); height: 230px"></div>
+                                    <div class="blog-content">
+                                        <span class="date"><i class="fa fa-clock-o"></i> {{date("F, d.Y",$article->created_at->getTimestamp())}}</span>
+                                        <h3><a href="{{route('news.show',['slug'=>$article->slug])}}">{{$article->title}}</a></h3>
+
+                                        <p>{{$article->description}}</p>
+                                        <a href="{{route('news.show',['slug'=>$article->slug])}}" class="post-meta">Read More</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div><!-- Post 1 -->
-                      {{--  <div class="col-md-4 padding-15">
-                            <div class="blog-post">
-                                <img src="img/home-blog-2.jpg" alt="blog post">
-                                <div class="blog-content">
-                                    <span class="date"><i class="fa fa-clock-o"></i> July 22.2022</span>
-                                    <h3><a href="#">Funding for the NGO</a></h3>
-                                    <p>The secret to happiness lies in helping others. Never underestimate the difference YOU can make in the lives of the poor, the abused and the helpless.</p>
-                                    <a href="#" class="post-meta">Read More</a>
-                                </div>
-                            </div>
-                        </div><!-- Post 2 -->--}}
-                        <div class="col-md-4 padding-15">
-                            <div class="blog-post">
-                                <div class="image-placeholder" style="background-image: url({{asset('images/roberto-chiteta.jpg')}}); height: 230px"></div>
-{{--                                <img src="img/home-blog-3.jpg" alt="blog post">--}}
-                                <div class="blog-content">
-                                    <span class="date"><i class="fa fa-clock-o"></i> July 22.2022</span>
-                                    <h3><a href="#">Biography of the founder</a></h3>
-                                    <p>A brief description of our founder and an overview of their skills, education background and experience.</p>
-                                    <a href="{{route('news.biography-of-the-founder')}}" class="post-meta">Read More</a>
-                                </div>
-                            </div>
-                        </div><!-- Post 3 -->
+                        @endforeach
                     </div>
                 </div><!-- Blog Posts -->
             </div>

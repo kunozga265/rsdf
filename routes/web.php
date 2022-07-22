@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,61 +15,99 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.home');
-})->name('home');
+Route::get('/', [
+    PageController::class,'home'
+])->name('home');
 
-Route::get('/our-activities', function () {
-    return view('pages.our-activities');
-})->name('our-activities');
+Route::get('/our-activities', [
+    PageController::class,'ourActivities'
+])->name('our-activities');
 
-Route::get('/our-achievements', function () {
-    return view('pages.our-achievements');
-})->name('our-achievements');
+Route::get('/our-achievements', [
+    PageController::class,'ourAchievements'
+])->name('our-achievements');
 
-Route::get('/partnerships', function () {
-    return view('pages.partnerships');
-})->name('partnerships');
+Route::get('/partnerships', [
+    PageController::class,'partnerships'
+])->name('partnerships');
 
-Route::get('/future-plans', function () {
-    return view('pages.future-plans');
-})->name('future-plans');
+Route::get('/future-plans', [
+    PageController::class,'futurePlans'
+])->name('future-plans');
 
-Route::get('/news', function () {
-    return view('pages.news');
-})->name('news');
-//
-//Route::get('/news/{slug}', function () {
-//    return view('pages.news-show');
-//})->name('news.show');
+Route::get('/contact-info', [
+    PageController::class,'contactInfo'
+])->name('contact-info');
 
-Route::get('/news/biography-of-the-founder', function () {
-    return view('pages.biography-of-the-founder');
-})->name('news.biography-of-the-founder');
+Route::get('/objectives', [
+    PageController::class,'objectives'
+])->name('objectives');
 
-Route::get('/news/formation-of-ngo', function () {
-    return view('pages.formation-of-ngo');
-})->name('news.formation-of-ngo');
+Route::get('/ngo-management', [
+    PageController::class,'ngoManagement'
+])->name('ngo-management');
 
-Route::get('/contact-info', function () {
-    return view('pages.contact-info');
-})->name('contact-info');
+Route::get('/funding-guarantee', [
+    PageController::class,'fundingGuarantee'
+])->name('funding-guarantee');
 
-Route::get('/objectives', function () {
-    return view('pages.objectives');
-})->name('objectives');
+Route::get('/rsdf-region-office', [
+    PageController::class,'rsdfRegionOffice'
+])->name('rsdf-region-office');
 
-Route::get('/ngo-management', function () {
-    return view('pages.ngo-management');
-})->name('ngo-management');
+Route::post('/pages', [
+    PageController::class,'uploadPhoto'
+])->name('pages.upload-photo')->middleware(['auth']);
 
-Route::get('/funding-guarantee', function () {
-    return view('pages.funding-guarantee');
-})->name('funding-guarantee');
+Route::post('/contact-us', [
+    PageController::class,'contact'
+])->name('contact-us');
 
+Route::post('/change-password', [
+    PageController::class,'changePassword'
+])->name('change-password')->middleware(['auth']);
 
+/*
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth'])->name('dashboard');*/
+Route::group(['prefix'=>'news'],function (){
+
+    Route::get('/', [
+        NewsController::class,'index'
+    ])->name('news');
+
+    Route::get('/view/{slug}', [
+        NewsController::class,'show'
+    ])->name('news.show');
+
+
+    Route::group(['middleware'=>'auth'],function (){
+
+        Route::get('/create', [
+            NewsController::class,'create'
+        ])->name('news.create');
+
+
+        Route::get('/edit/{slug}', [
+            NewsController::class,'edit'
+        ])->name('news.edit');
+
+        Route::post('/store', [
+            NewsController::class,'store'
+        ])->name('news.store');
+
+        Route::post('/update/{slug}', [
+            NewsController::class,'update'
+        ])->name('news.update');
+
+        Route::post('/delete/{slug}', [
+            NewsController::class,'destroy'
+        ])->name('news.delete');
+    });
+});
+
+
+
 
 require __DIR__.'/auth.php';

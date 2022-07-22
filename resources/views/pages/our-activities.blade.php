@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div class="pager-header" style="background-image: url({{asset('img/page-header-bg.jpg')}})">
+    <div class="pager-header" style="background-image: url({{asset($page->photo)}})">
         <div class="container">
             <div class="page-content">
                 <h2>Our Activities</h2>
@@ -9,7 +9,38 @@
                 </ol>
             </div>
         </div>
+          @auth
+        <!-- Button trigger modal -->
+        <button type="button" class="error-btn edit-photo" data-toggle="modal" data-target="#exampleModalCenter">
+            <i class="ti-pencil"></i> Photo
+        </button>
+        @endauth
     </div><!-- /Page Header -->
+
+      <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <form id="" class="form-wrap material" method="post" action="{{route('pages.upload-photo')}}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Edit Photo</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" name="code" value="{{$page->code}}">
+                        <input type="file" name="photo" id="photo" class="form-control-file material__input pt-8" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="secondary-btn" data-dismiss="modal">Close</button>
+                        <button type="submit" class="default-btn">Upload</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <section class=" bg-grey bd-bottom padding">
         <div class="container">

@@ -105,7 +105,7 @@
             <div class="bottom-content-wrap row">
                 <div class="col-sm-4">
                     <div class="site-branding" style="padding: 20px 0;">
-                        <a  href="#"><img style="height: 50px" src="{{asset('img/logo.png')}}" alt="Brand"></a>
+                        <a  href="{{route('home')}}"><img style="height: 50px" src="{{asset('images/logo.jpeg')}}" alt="Brand"></a>
                     </div>
                 </div>
                 <div class="col-sm-8 text-right">
@@ -125,10 +125,26 @@
                                 <li><a href="{{route('contact-info')}}">Contact Info</a></li>
                                 <li><a href="{{route('ngo-management')}}">NGO Management</a></li>
 {{--                                <li><a href="#">Core Values</a></li>--}}
+                                <li><a href="{{route('rsdf-region-office')}}">RSDF Region Office</a></li>
                                 <li><a href="{{route('objectives')}}">Objectives</a></li>
                                 <li><a href="{{route('funding-guarantee')}}">Funding Guarantee</a></li>
                             </ul>
                         </li>
+                        @auth
+                        <li> <a href="#">Profile</a>
+
+                            <ul>
+                                <li><a href="#" data-toggle="modal" data-target="#exampleModalCenter">Change Password</a></li>
+                                <li>
+                                    <form id="logout" method="post" action="{{route('logout')}}" >
+                                        @csrf
+                                        <a href="javascript:{}" onclick="document.getElementById('logout').submit();">Logout</a>
+                                    </form>
+                                </li>
+
+                            </ul>
+                        </li>
+                        @endauth
                     </ul>
                     <a data-scroll href="#subscribe" class="default-btn">Subscribe</a>
                 </div>
@@ -137,10 +153,64 @@
     </div>
 </header><!-- /Header Section -->
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <form id="" class="form-wrap material" method="post" action="{{route('change-password')}}" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Change Password</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Validation Errors -->
+                    <x-auth-validation-errors class="mb-4" :errors="$errors" />
+
+                    <input style="margin-bottom: 10px"  placeholder="Current Password" type="password" name="password" class="form-control" required>
+                    <input placeholder="New Password" type="password" name="newPassword" class="form-control" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="secondary-btn" data-dismiss="modal">Close</button>
+                    <button type="submit" class="default-btn">Change</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <div class="header-height"></div>
 
 {{ $slot }}
+<div class="status">
+    @if($message=Session::get('success'))
+        <div style="width:100%" class="alert alert-success alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <strong>Success!</strong> {{$message}}
+        </div>
+    @endif
+    @if($message=Session::get('info'))
+        <div style="width:100%" class="alert alert-info alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <strong>Information!</strong> {{$message}}
+        </div>
+    @endif
+    @if($message=Session::get('error'))
+        <div style="width:100%" class="alert alert-danger alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <strong>Error!</strong> {{$message}}
+        </div>
+    @endif
+    @if($message=Session::get('notice'))
+        <div style="width:100%" class="alert alert-warning alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <strong>Notice box!</strong> {{$message}}
+        </div>
+    @endif
 
+</div>
 
 <section class="widget-section padding">
     <div class="container">
@@ -168,20 +238,35 @@
                         <li><i class="ti-location-pin"></i> Lusaka, Zambia</li>
                     </ul>
                     <ul class="social-icon">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="https://www.linkedin.com/in/roberto-save-dreams-foundation-38376a21a" target="_blank"><i class="ti-linkedin"></i></a></li>
+                        <li><a href="https://www.twitter.com/rosdfound" target="_blank"><i class="ti-twitter"></i></a></li>
                     </ul>
                 </div>
             </div>
             <div class="col-md-6 col-lg-4 xs-padding">
                 <div class="widget-content">
                     <h3>Quick Links</h3>
-                    <ul class="widget-link">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">What we do</a></li>
-                        <li><a href="#">News</a></li>
-                        <li><a href="#">About Us</a></li>
-                    </ul>
+                    <div style="display: flex; justify-content: space-between">
+                        <div class="">
+                            <ul class="widget-link">
+                                <li><a href="{{route('home')}}">Home</a></li>
+                                <li><a href="{{route('our-activities')}}">Our Activities</a></li>
+                                <li><a href="{{route('our-achievements')}}">Our Achievements</a></li>
+                                <li><a href="{{route('partnerships')}}">Partnerships</a></li>
+                                <li><a href="{{route('future-plans')}}">Future Plans</a></li>
+                                <li><a href="{{route('news')}}">News</a></li>
+                            </ul>
+                        </div>
+                        <div class="">
+                            <ul class="widget-link">
+                                <li><a href="{{route('contact-info')}}">Contact Info</a></li>
+                                <li><a href="{{route('ngo-management')}}">NGO Management</a></li>
+                                <li><a href="{{route('objectives')}}">Objectives</a></li>
+                                <li><a href="{{route('funding-guarantee')}}">Funding Guarantee</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
@@ -206,6 +291,9 @@
 </footer><!-- /Footer Section -->
 
 <a data-scroll href="#header" id="scroll-to-top"><i class="arrow_up"></i></a>
+
+<script src="{{asset('ckeditor/ckeditor.js')}}"></script>
+@stack('scripts')
 
 <!-- jQuery Lib -->
 <script src="{{asset('js/vendor/jquery-1.12.4.min.js')}}"></script>

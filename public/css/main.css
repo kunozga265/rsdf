@@ -307,6 +307,20 @@ padding: 0 15px;
     background-color: #f5c408;
     color: #fff;
 }
+.error-btn{
+    background-color: #db136b;
+    color: #fff;
+    line-height: 45px;
+    display: inline-block;
+    padding: 0 25px;
+    border-radius: 3px;
+    font-size: 15px;
+    font-weight: 500;
+}
+.error-btn:hover{
+    background-color: #cb4e84;
+    color: #fff;
+}
 
 /*Section Heading Style*/
 .section-heading .heading-border{
@@ -1011,8 +1025,7 @@ left: 0;
 bottom: 0;
 width: 100%;
 padding: 70px 0 15px 0;
-opacity: 0;
-visibility: hidden;
+
 transition: all 0.3s linear;
 }
 .team-details:hover .hover{
@@ -1274,6 +1287,8 @@ color: #ddd;
 15.0 Page Header Section
 ========================================================================== */
 .pager-header{
+background-color: #000000ba;
+background-blend-mode: darken;
 background-repeat: no-repeat;
 background-attachment: scroll;
 background-position: center center;
@@ -1282,6 +1297,7 @@ background-size: cover;
 min-height: 300px;
 display: flex;
 align-items: center;
+position: relative;
 }
 .pager-header h2{
 color: #fff;
@@ -1949,6 +1965,8 @@ border: 1px solid #f8b864;
 color: #fff;
 }
 
+
+
 /* ==========================================================================
 20.0 Contact Section
 ========================================================================== */
@@ -1957,11 +1975,13 @@ position: relative;
 z-index: 1;
 }
 .contact-wrap{
-background-color: #f2f2f2;
-padding: 80px 50px;
-box-shadow: 0px 16px 28px 0px rgba(0, 0, 0, 0.15);
-margin-top: 110px;
-border-radius: 5px;
+    background-color: #fff;
+    padding: 80px 50px;
+    box-shadow: 0px 16px 28px 0px rgb(0 0 0 / 15%);
+    /* margin-top: 110px; */
+    border-radius: 5px;
+    max-width: 600px;
+    margin: auto;
 }
 .contact-section h3{
 font-weight: 800;
@@ -2066,8 +2086,11 @@ color: #fff;
 /*********************************************************************************
 Customized Styles
 **********************************************************************************/
+
+
 .rsdf-header{
-    background-color: #222222;
+    background-color: #000000ba;
+    background-blend-mode: darken;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -2075,7 +2098,9 @@ Customized Styles
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
+
 
 .rsdf-header > div{
     text-align: center;
@@ -2172,4 +2197,104 @@ Customized Styles
         padding: 40px;
         border-radius: 100px;
     }
+}
+
+.form-wrap{
+    background-color: #fff;
+    padding: 80px 50px;
+    box-shadow: 0px 16px 28px 0px rgb(0 0 0 / 15%);
+    /* margin-top: 110px; */
+    border-radius: 5px;
+    /*max-width: 600px;*/
+    /*margin: auto;*/
+}
+.news-item .image{
+    display: flex;
+    justify-content: center;
+}
+
+.news-item img{
+    max-height: 600px;
+    width: auto;
+    margin-bottom: 20px;
+}
+
+.edit-photo{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+/*-------------------------------------------------------*/
+/* Pagination
+/*-------------------------------------------------------*/
+.pagination {
+    text-align: center;
+    list-style: none;
+    display: inline-flex;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.page-item a, .page-item.active,.page-item.disabled {
+    font-size: 15px;
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    margin-right: 20px;
+    text-align: center;
+    color: #868686;
+    background-color: #eeeeee;
+    vertical-align: middle;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+.page-item a:hover {
+    background-color: #ffb451;
+    color: #000;
+}
+
+.page-numbers:last-child {
+    margin-right: 0;
+}
+
+.page-item.active {
+    background-color: #ffb451;
+    color: #000;
+    padding: 0.5rem;
+}
+
+.page-numbers i {
+    font-size: 12px;
+    position: relative;
+    top: -2px;
+}
+
+.page-item.active .page-link {
+    background-color: #f8b864;
+    border: 1px solid #f8b864;
+    color: #fff;
+}
+
+.page-item.disabled .page-link {
+    padding: 0.5rem;
+}
+
+.page-link {
+    padding: 0;
+}
+
+#spinner{
+    width: 50px;
+}
+
+.status{
+    position: fixed;
+    bottom: 50px;
+    left: 50px;
 }
