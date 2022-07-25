@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\SubscriberController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -62,6 +63,14 @@ Route::post('/pages', [
 Route::post('/contact-us', [
     PageController::class,'contact'
 ])->name('contact-us');
+
+Route::get('/subscribers', [
+    SubscriberController::class,'index'
+])->name('subscribers')->middleware(['auth']);
+
+Route::post('/subscribe', [
+    SubscriberController::class,'store'
+])->name('subscribe');
 
 Route::post('/change-password', [
     PageController::class,'changePassword'

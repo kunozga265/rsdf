@@ -62,5 +62,9 @@ class PageTableSeeder extends Seeder
             'code'  => 'rsdf-region-office',
             'photo' => 'images/pages/rsdf-region-office.jpg',
         ]);
+        Page::create([
+            'code'  => 'subscribers',
+            'photo' => 'images/pages/subscribers.jpg',
+        ]);
     }
 }

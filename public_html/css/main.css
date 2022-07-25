@@ -306,6 +306,7 @@ padding: 0 15px;
 .secondary-btn:hover{
     background-color: #f5c408;
     color: #fff;
+    cursor: pointer;
 }
 .error-btn{
     background-color: #db136b;
@@ -320,6 +321,7 @@ padding: 0 15px;
 .error-btn:hover{
     background-color: #cb4e84;
     color: #fff;
+    cursor: pointer;
 }
 
 /*Section Heading Style*/
@@ -2295,6 +2297,26 @@ Customized Styles
 
 .status{
     position: fixed;
-    bottom: 50px;
-    left: 50px;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1;
+}
+
+@media (min-width: 768px) {
+    .status{
+        bottom: 50px;
+        left: 50px;
+    }
+}
+
+.subscribers{
+    width: 100%;
+}
+
+.subscribers tbody tr{
+    border-top: 1px solid #ddd;
+}
+
+.subscribers tr td,.subscribers tr th{
+    padding: 8px;
 }
