@@ -1,4 +1,8 @@
 <x-guest-layout>
+    <x-slot name="title">
+        NGO Management
+    </x-slot>
+
     <div class="pager-header" style="background-image: url({{asset($page->photo)}})">
         <div class="container">
             <div class="page-content">
@@ -91,9 +95,41 @@
                 </div>
                 <div class="col-sm-6 col-md-4">
                     <div class="team-details">
+                        <img src="{{asset('images/indio-costa.jpg')}}" alt="team">
+                        <div class="hover">
+                            <h3>Indio Costa<span>Country Director - Angola</span></h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="team-details">
                         <img src="{{asset('images/harriet-nyamasambu.jpg')}}" alt="team">
                         <div class="hover">
                             <h3>Harriet Daisy Nyamasanbu<span>National Program Director</span></h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="team-details">
+                        <img src="{{asset('images/gideon-chijimo.jpg')}}" alt="team">
+                        <div class="hover">
+                            <h3>Eng. Gideon Chijimo<span>National Program Director</span></h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="team-details">
+                        <img src="{{asset('images/michael-banda.jpg')}}" alt="team">
+                        <div class="hover">
+                            <h3>Michael Banda<span>Finance Director</span></h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="team-details">
+                        <img src="{{asset('images/ukweni-adanzie.jpg')}}" alt="team">
+                        <div class="hover">
+                            <h3>Ukweni Adanzie<span>General Secretary</span></h3>
                         </div>
                     </div>
                 </div>
