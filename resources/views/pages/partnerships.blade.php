@@ -1,11 +1,15 @@
 <x-guest-layout>
+    <x-slot name="title">
+        Partnerships
+    </x-slot>
+
     <div class="pager-header" style="background-image: url({{asset($page->photo)}})">
         <div class="container">
             <div class="page-content">
-                <h2>Colaborative Partnership</h2>
+                <h2>Collaborative Partnerships</h2>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-                    <li class="breadcrumb-item active">Our Partnerships</li>
+                    <li class="breadcrumb-item active">Partnerships</li>
                 </ol>
             </div>
         </div>

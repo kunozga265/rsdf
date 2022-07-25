@@ -35,7 +35,7 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>RSDF - {{$title }}</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
 
@@ -134,6 +134,7 @@
                             <li> <a href="#">Profile</a>
 
                                 <ul>
+                                    <li><a href="{{route('subscribers')}}">Subscribers</a></li>
                                     <li><a href="#" data-toggle="modal" data-target="#changePassword">Change Password</a></li>
                                     <li>
                                         <form id="logout" method="post" action="{{route('logout')}}" >
@@ -153,6 +154,7 @@
     </div>
 </header><!-- /Header Section -->
 
+@auth
 <!-- Modal -->
 <div class="modal fade" id="changePassword" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -180,6 +182,7 @@
         </div>
     </div>
 </div>
+@endauth
 
 <div class="header-height"></div>
 
@@ -221,9 +224,12 @@
             <div id="subscribe" class="col-md-12 col-lg-4 xs-padding">
                 <div class="widget-content">
                     <h3>Subscribe to our Newsletter</h3>
-                    <form action="#">
-                        <input style="margin-bottom: 10px" class="form-control" type="text" placeholder="Full Name">
-                        <input style="margin-bottom: 10px" class="form-control" type="text" placeholder="Email">
+                    <form action="{{route('subscribe')}}" method="post">
+                        @csrf
+                        <!-- Validation Errors -->
+                        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+                        <input style="margin-bottom: 10px" class="form-control" type="text" name="name" placeholder="Full Name" required>
+                        <input style="margin-bottom: 10px" class="form-control" type="email" name="email" placeholder="Email" required>
                         <input style="margin-bottom: 20px" class="default-btn" type="submit" value="Subscribe">
                     </form>
                 </div>
@@ -261,6 +267,7 @@
                             <ul class="widget-link">
                                 <li><a href="{{route('contact-info')}}">Contact Info</a></li>
                                 <li><a href="{{route('ngo-management')}}">NGO Management</a></li>
+                                <li><a href="{{route('rsdf-region-office')}}">RSDF Region Office</a></li>
                                 <li><a href="{{route('objectives')}}">Objectives</a></li>
                                 <li><a href="{{route('funding-guarantee')}}">Funding Guarantee</a></li>
                             </ul>

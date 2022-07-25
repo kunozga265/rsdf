@@ -1,5 +1,9 @@
 <x-guest-layout>
 
+    <x-slot name="title">
+        Home
+    </x-slot>
+
     <div class="rsdf-header" style="background-image: url({{asset($page->photo)}})">
         <div>
 {{--            <h5 class="wow cssanimation fadeInBottom">Join Us Today</h5>--}}

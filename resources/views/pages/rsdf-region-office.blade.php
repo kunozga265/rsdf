@@ -1,4 +1,7 @@
 <x-guest-layout>
+    <x-slot name="title">
+        RSDF Region Office
+    </x-slot>
 
     <div class="pager-header" style="background-image: url({{asset($page->photo)}})">
         <div class="container">

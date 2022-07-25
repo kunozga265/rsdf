@@ -16,6 +16,10 @@
         </script>
     @endpush
 
+        <x-slot name="title">
+            News - Edit - {{$news->title}}
+        </x-slot>
+
         <div class="pager-header" style="background-image: url({{asset($page->photo)}})">
         <div class="container">
             <div class="page-content">

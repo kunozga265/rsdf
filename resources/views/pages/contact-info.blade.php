@@ -14,6 +14,10 @@
         </script>
     @endpush
 
+    <x-slot name="title">
+        Contact Info
+    </x-slot>
+
     <div class="pager-header" style="background-image: url({{asset($page->photo)}})">
         <div class="container">
             <div class="page-content">
